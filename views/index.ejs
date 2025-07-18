@@ -1,0 +1,23 @@
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to <span class="brand">My-Secure App</span></h1>
+        <p class="subtitle">
+          Your secure place for pictures, documents, passwords, and events.
+        </p>
+        <div class="cta-buttons">
+          <a href="/account/signup" class="btn btn-primary">Get Started</a>
+          <a href="/account/login" class="btn btn-secondary">Login</a>
+        </div>
+      </div>
+    </section>
+    <% if (messages && messages.success) { %>
+    <div class="flash-message success"><%= messages.success %></div>
+    <% } %> <% if (messages && messages.error) { %>
+    <div class="flash-message error"><%= messages.error %></div>
+    <% } %> <% if (messages && messages.info) { %>
+    <div class="flash-message info"><%= messages.info %></div>
+    <% } %>
+  </main>
+

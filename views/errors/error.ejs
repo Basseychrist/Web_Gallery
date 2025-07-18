@@ -1,0 +1,15 @@
+<!-- filepath: c:\Users\LENOVO X1 CARBON\Desktop\Web_Gallery\Web_Gallery\views\errors\error.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+</head>
+<body>
+  <h1>Error <%= title %></h1>
+  <p><%= message %></p>
+  <% if (error && error.stack) { %>
+    <pre><%= error.stack %></pre>
+  <% } %>
+  <a href="/">Go Home</a>
+</body>
+</html>

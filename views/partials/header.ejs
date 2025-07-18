@@ -1,0 +1,26 @@
+<header class="main-header">
+  <div class="container header-flex">
+    <a href="/" class="logo">
+      <span class="brand">My</span>
+      <span class="brand-alt">Secure</span>
+    </a>
+    <nav class="account-nav">
+      <ul>
+        <% if (user) { %>
+        <li>
+          <span class="welcome">
+            Welcome<% if (user.account_firstname) { %>, <%=
+            user.account_firstname %><% } %>
+          </span>
+        </li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/account/logout">Logout</a></li>
+        <% } else { %>
+          <li><a href="/account/login">Contact Us</a></li>
+        <li><a href="/account/login">Login</a></li>
+        <li><a href="/account/signup">Sign Up</a></li>
+        <% } %>
+      </ul>
+    </nav>
+  </div>
+</header>
