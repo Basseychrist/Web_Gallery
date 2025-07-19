@@ -10,7 +10,7 @@ require("dotenv").config(); // <-- FIRST LINE
  *************************/
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
-// const pool = require("./database/");
+const pool = require("./database/");
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const flash = require("connect-flash");
@@ -18,12 +18,13 @@ const flash = require("connect-flash");
 // const { sequelize } = require("./models");
 const utilities = require("./utilities/utilities");
 const path = require("path");
+const db = require("./database/index"); // Adjust path if needed
 
 /* ***********************
  * App Initialization
  *************************/
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5432;
 const host = process.env.HOST || "localhost";
 
 /* ***********************
@@ -101,6 +102,17 @@ app.use(async (err, req, res, next) => {
 /* ***********************
  * Database Synchronization and Server Start
  *************************/
+
+// Example test query on startup
+db.query("SELECT 1 AS connected")
+  .then((res) => {
+    if (res.rows && res.rows.length > 0) {
+      console.log("Database connected:", res.rows[0]);
+    } else {
+      console.log("Database connection test returned no rows.");
+    }
+  })
+  .catch((err) => console.error("Database connection error:", err));
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
