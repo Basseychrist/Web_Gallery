@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1 class="page-title"><%= title %></h1>
+    <div class="error-message">
+      <% if (errors) { %>
+      <ul class="notice">
+        <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+      <% } %> <% if (success_msg) { %>
+      <div class="alert alert-success"><%= success_msg %></div>
+      <% } %> <% if (error_msg) { %>
+      <div class="alert alert-danger"><%= error_msg %></div>
+      <% } %> <% if (error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+      <% } %>
+    </div>
+
+    <div class="form-container">
+      <form action="/account/register" method="post" id="register-form">
+        <label for="account_firstname"
+          >First Name: <span style="color: red">*</span></label
+        >
+        <input
+          type="text"
+          id="account_firstname"
+          name="account_firstname"
+          required
+          value="<%= typeof account_firstname !== 'undefined' ? account_firstname : '' %>"
+        />
+
+        <label for="account_lastname"
+          >Last Name: <span style="color: red">*</span></label
+        >
+        <input
+          type="text"
+          id="account_lastname"
+          name="account_lastname"
+          required
+          value="<%= typeof account_lastname !== 'undefined' ? account_lastname : '' %>"
+        />
+
+        <label for="account_email"
+          >Email: <span style="color: red">*</span></label
+        >
+        <input type="email" id="account_email" name="account_email" required />
+
+        <label for="account_email_confirm"
+          >Confirm Email: <span style="color: red">*</span></label
+        >
+        <input
+          type="email"
+          id="account_email_confirm"
+          name="account_email_confirm"
+          required
+        />
+
+        <label for="account_password">
+          Password: <span style="color: red">*</span>
+          <br />
+          <small>
+            Must be at least 12 characters, include 1 capital letter, 1 number,
+            and 1 special character.
+          </small>
+        </label>
+        <input
+          type="password"
+          id="account_password"
+          name="account_password"
+          required
+          minlength="12"
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+        />
+        <button type="submit">Register</button>
+      </form>
+    </div>
+    <script>
+      document
+        .getElementById("register-form")
+        .addEventListener("submit", function (e) {
+          const email = document.getElementById("account_email").value.trim();
+          const emailConfirm = document
+            .getElementById("account_email_confirm")
+            .value.trim();
+          if (email !== emailConfirm) {
+            alert("Email addresses do not match!");
+            e.preventDefault();
+          }
+        });
+    </script>
+  </body>
+</html>

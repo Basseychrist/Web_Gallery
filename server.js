@@ -1,5 +1,3 @@
-require("dotenv").config(); // <-- FIRST LINE
-
 /* ******************************************
  * This server.js file is the primary file of the
  * application. It is used to control the project.
@@ -8,38 +6,46 @@ require("dotenv").config(); // <-- FIRST LINE
 /* ***********************
  * Require Statements
  *************************/
+require("dotenv").config(); //
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const pool = require("./database/");
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const flash = require("connect-flash");
+const baseController = require("./controllers/baseController");
 // const SequelizeStore = require("connect-session-sequelize")(session.Store);
 // const { sequelize } = require("./models");
-const utilities = require("./utilities/utilities");
+const utilities = require("./utilities");
 const path = require("path");
 const db = require("./database/index"); // Adjust path if needed
 
 /* ***********************
  * App Initialization
+ * Values from .env (environment) file
  *************************/
 const app = express();
-const port = process.env.PORT || 5432;
-const host = process.env.HOST || "localhost";
+const port = process.env.PORT;
+const host = process.env.DB_HOST;
 
 /* ***********************
  * Middleware
  * ************************/
 app.use(
   session({
+    store: new (require("connect-pg-simple")(session))({
+      createTableIfMissing: true,
+      pool,
+    }),
     secret: process.env.SESSION_SECRET,
-    // store: new SequelizeStore({ db: sequelize }),
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     name: "sessionId",
   })
 );
 
 app.use(flash());
+
 app.use(cookieParser());
 app.use(utilities.checkJWTToken);
 app.use(express.json());
@@ -72,9 +78,14 @@ app.use(express.static(path.join(__dirname, "public")));
 /* ***********************
  * Routes
  *************************/
-const indexRoutes = require("./routes/index");
-app.use("/", indexRoutes);
+const indexRoute = require("./routes/index");
+const accountRoute = require("./routes/accountRoute");
+const errorRoute = require("./routes/errorRoute"); // or similar
 
+app.use("/", indexRoute);
+// Account routes
+app.use("/account", accountRoute);
+app.use("/error", errorRoute);
 /* ***********************
  * File Not Found Route
  * - must be last route in list

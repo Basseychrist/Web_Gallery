@@ -1,9 +1,8 @@
 body {
-  font-family: "Poppins", Arial, sans-serif;
-  background: #f7f9fb;
+  background: #f7f7f7;
+  font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
   padding: 0;
-  color: #222;
 }
 
 .hero {
@@ -25,7 +24,7 @@ body {
 }
 
 .brand {
-  color: #771345BA;
+  color: #771345ba;
   font-weight: 800;
 }
 
@@ -52,12 +51,12 @@ body {
 
 .btn-primary {
   background: #fff;
-  color: #771345BA;
+  color: #771345ba;
   border: none;
 }
 
 .btn-primary:hover {
-  background: #771345BA;
+  background: #771345ba;
   color: #fff;
 }
 
@@ -101,54 +100,83 @@ body {
 
 /* Header styles */
 .main-header {
-  background: #fff;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 0.5em 0;
+  background: #0078d4;
+  color: #fff;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .header-flex {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 2em;
+  padding: 0 24px;
+  height: 64px;
 }
 
 .logo {
-  font-size: 1.7rem;
-  font-weight: 800;
-  color: #4f8cff;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
   text-decoration: none;
+  letter-spacing: 1px;
 }
 
 .brand {
-  color: #4f8cff;
+  color: #fff;
 }
 
 .brand-alt {
-  color: #771345BA;
-  margin-left: 0.2em;
+  color: #ffe600;
 }
 
 .account-nav ul {
   list-style: none;
+  display: flex;
+  gap: 18px;
   margin: 0;
   padding: 0;
-  display: flex;
-  gap: 1.2em;
 }
 
-.account-nav a,
-.welcome {
-  color: #222;
+.account-nav li {
+  display: flex;
+  align-items: center;
+}
+
+.account-nav a {
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
-  font-size: 1rem;
+  padding: 8px 14px;
+  border-radius: 4px;
+  transition: background 0.2s;
 }
 
 .account-nav a:hover {
-  color: #4f8cff;
+  background: #005fa3;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 20px 0;
+  color: #333;
+}
+
+
+
+.welcome {
+  margin-right: 10px;
+  font-size: 1rem;
+  color: black;
+}
+
+.welcome-message, .register-link{
+  text-align: center;
+  font-size: 1.1rem;
+  color: #333;
 }
 
 /* Navigation styles */
@@ -191,4 +219,83 @@ footer {
 
 #trigger-error {
   color: #990000;
+}
+
+.form-container {
+  background: #fff;
+  max-width: 400px;
+  margin: 40px auto 0 auto;
+  padding: 32px 28px 24px 28px;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+}
+
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #222;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background: #fafafa;
+  transition: border 0.2s;
+}
+
+input:focus {
+  border-color: #0078d4;
+  outline: none;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background: #0078d4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+  background: #005fa3;
+}
+
+.notice,
+.alert, .alert-success, .alert-danger {
+  margin-bottom: 18px;
+  background: white;
+  color: red;
+  font-size: 0.98rem;
+}
+
+.error-message {
+  padding: 0px;
+  background: #ffffff;
+  color: #ffffff;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 20px;
+  list-style: none;
+  max-width: 400px;
+  margin: 20px auto;
+  border-radius: 8px;
+  font-weight: 500;
 }
